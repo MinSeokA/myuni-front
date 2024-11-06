@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 기본 레이아웃 설정 */
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 부모 컨테이너 스크롤 설정 */
+.scroll-container {
+  scroll-snap-type: y mandatory; /* y 축으로 스냅 스크롤 */
+}
+/* 각 섹션이 스냅될 수 있도록 설정 */
+.scroll-section {
+  scroll-snap-align: start; /* 섹션의 시작 부분에 스냅 */
+}
+
+/* iPhone 프레임 설정 */
+.puJS-fullscreen-cover {
+  position: fixed;
+  z-index: 999;
+  top: 50%; /* 화면의 세로 중앙 */
+  left: 50%; /* 화면의 가로 중앙 */
+  width: 420px; /* 이미지 원본 크기에 맞춤 */
+  height: 844.8px;
+  border-radius: 49.5px !important; /* 프레임 내부에 맞춘 둥근 모서리 */
+  border: 0!important;
+  transform: translate(-50%, -50%); /* 요소를 정확히 중앙에 위치시킴 */
+  backdrop-filter: brightness(.8);
+  -webkit-backdrop-filter: brightness(.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .5s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+
+.frame {
+  width: 430px; /* 이미지 원본 크기에 맞춤 */
+  height: 894.8px;
+  /* background-image: url('https://cdn.lunaiz.com/my_uni_assets/mockup.png'); */
+  background-image: url('https://newjeans.kr/imgs/common/mockup.png');
+  background-size: contain; /* 이미지가 잘리지 않도록 contain으로 설정 */
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, #00d0ff, #3138ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* 모바일에서 프레임 숨기기 */
+@media (max-width: 576px) {
+  .frame {
+    background-image: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    padding: 0 !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+  }
+
+  .status-bar,
+  .status-bar .clock {
+    display: none !important;
+  }
+}
+
+/* 콘텐츠 스타일 */
+.content {
+  width: 90.3%; /* 프레임 안에 맞도록 적절히 조정 */
+  padding: 0px 20px;
+  box-sizing: border-box;
+  border-radius: 49.5px; /* 프레임 내부에 맞춘 둥근 모서리 */
+  overflow-y: auto;
+  text-align: center;
+  height: 810px;
+  z-index: 3;
+}
+
+.status-bar {
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-left: 20px;
+}
+
+.status-bar,
+.status-bar .clock {
+  display: flex;
+  align-items: center;
+}
+
+.status-bar .clock {
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status-bar img {
+  display: block;
+  flex: 0 0 72px;
+  width: 72px;
+}
+
+.status-bar.dark .clock {
+  color: #000;
+}
